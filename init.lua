@@ -98,7 +98,12 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+-- Close terminal buffer and return to previous buffer
+vim.api.nvim_set_keymap('n', '<leader>tc', ':bd!<CR>', { noremap = true, desc = 'Close terminal' })
 
+-- Toggle terminal
+vim.api.nvim_set_keymap('n', '<leader>tt', ':terminal<CR>i', { noremap = true, desc = 'Toggle terminal' })
+vim.api.nvim_set_keymap('n', '<leader>tr', ':botright vsplit | terminal<CR>i', { noremap = true, silent = true, desc = 'Open Terminal to the right' })
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
@@ -119,6 +124,7 @@ vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- vim.wo.foldtext = 'v:lua.vim.treesitter.foldtext()'
 vim.opt.foldcolumn = '0' -- '0' is another option
 vim.api.nvim_set_hl(0, 'Folded', { fg = '#ffffff', bg = '#555555' })
+vim.opt.foldlevelstart = 99
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
